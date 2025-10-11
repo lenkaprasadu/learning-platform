@@ -1,1 +1,1 @@
-https://lenkaprasadu.github.io/learning-platform/website.html
+https://lenkaprasadu.github.io/learning-platform/login.html
