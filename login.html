@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simple Website - Register, Login & About Us</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f0f2f5;
+    }
+
+    /* Navbar */
+    header {
+      background-color: #2b9c7a;
+      color: white;
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 22px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin-left: 15px;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: #dff9f3;
+    }
+
+    /* Containers */
+    .container {
+      max-width: 400px;
+      margin: 60px auto;
+      background: white;
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      text-align: center;
+      color: #333;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 15px;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: #2b9c7a;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    button:hover {
+      background-color: #238465;
+    }
+
+    .toggle-link {
+      text-align: center;
+      margin-top: 10px;
+      color: #007bff;
+      cursor: pointer;
+    }
+
+    #about {
+      max-width: 600px;
+      margin: 60px auto;
+      background: white;
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      display: none;
+    }
+
+    #about h2 {
+      text-align: center;
+      color: #333;
+    }
+
+    #about p {
+      line-height: 1.6;
+      color: #555;
+      font-size: 15px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <h1>My Learning Website</h1>
+    <nav>
+      <a href="#" onclick="showSection('register')">Register</a>
+      <a href="#" onclick="showSection('login')">Login</a>
+      <a href="#" onclick="showSection('about')">About Us</a>
+    </nav>
+  </header>
+
+  <!-- Register Form -->
+  <div class="container" id="register">
+    <h2>Register</h2>
+    <input type="text" id="regName" placeholder="Enter Name">
+    <input type="email" id="regEmail" placeholder="Enter Email">
+    <input type="password" id="regPassword" placeholder="Enter Password">
+    <button onclick="register()">Register</button>
+    <div class="toggle-link" onclick="showSection('login')">Already have an account? Login</div>
+  </div>
+
+  <!-- Login Form -->
+  <div class="container" id="login" style="display:none;">
+    <h2>Login</h2>
+    <input type="email" id="loginEmail" placeholder="Enter Email">
+    <input type="password" id="loginPassword" placeholder="Enter Password">
+    <button onclick="login()">Login</button>
+    <div class="toggle-link" onclick="showSection('register')">Don’t have an account? Register</div>
+  </div>
+
+  <!-- About Us -->
+  <div id="about">
+    <h2>About Us</h2>
+    <p>
+      Welcome to <strong>My Learning Website</strong>!  
+      We provide free tutorials and practical learning resources on HTML, CSS, JavaScript, and Python.  
+      Our goal is to help students and developers improve their coding skills with easy-to-understand examples and hands-on projects.
+    </p>
+    <p>
+      💡 Learn. Build. Grow with us!
+    </p>
+  </div>
+
+  <script>
+    function showSection(section) {
+      document.getElementById('register').style.display = 'none';
+      document.getElementById('login').style.display = 'none';
+      document.getElementById('about').style.display = 'none';
+
+      document.getElementById(section).style.display = 'block';
+    }
+
+    function register() {
+      const name = document.getElementById('regName').value;
+      const email = document.getElementById('regEmail').value;
+      const password = document.getElementById('regPassword').value;
+
+      if (name && email && password) {
+        localStorage.setItem('userEmail', email);
+        localStorage.setItem('userPassword', password);
+        alert('Registration Successful! Please login.');
+        showSection('login');
+      } else {
+        alert('Please fill all fields.');
+      }
+    }
+
+    function login() {
+      const email = document.getElementById('loginEmail').value;
+      const password = document.getElementById('loginPassword').value;
+      const regEmail = localStorage.getItem('userEmail');
+      const regPassword = localStorage.getItem('userPassword');
+
+      if (email === regEmail && password === regPassword) {
+        alert('Login Successful! Welcome back.');
+        window.location.href = "website.html";
+      } else {
+        alert('Invalid email or password.');
+      }
+    }
+
+  </script>
+
+</body>
+</html>
