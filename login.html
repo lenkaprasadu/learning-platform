@@ -41,9 +41,11 @@
 
     /* Containers */
     .container {
+      display: flex;
+      flex-direction: column;
       max-width: 400px;
       margin: 60px auto;
-      background: white;
+      background: rgb(128, 102, 69);
       padding: 25px;
       border-radius: 10px;
       box-shadow: 0 5px 15px rgba(0,0,0,0.1);
@@ -122,9 +124,17 @@
   <!-- Register Form -->
   <div class="container" id="register">
     <h2>Register</h2>
+    <label>Enter Name :</label>
     <input type="text" id="regName" placeholder="Enter Name">
-    <input type="email" id="regEmail" placeholder="Enter Email">
+    <label>Enter Email :</label>
+    <input type="email" id="regEmail" placeholder="enter@email.com">
+    <label>Create New Password :</label>
     <input type="password" id="regPassword" placeholder="Create New Password">
+    <div>
+      <input type='checkbox' id='agree'>
+      <lable for='agree'> I agree to start my career in IT field</lable>
+      <small>error message</small>
+    </div>
     <button onclick="register()">Register</button>
     <div class="toggle-link" onclick="showSection('login')">Already have an account? Login</div>
   </div>
